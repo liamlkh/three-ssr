@@ -42,12 +42,12 @@ class App {
     // three
     this.width = 1920;
     this.height = 1080;
-    // this.scene = new THREE.Scene();
-    // this.group = new THREE.Group();
-    // this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 1000);
-    // this.camera.position.z = 80;
-    // this.camera.zoom = 0.9;
-    // this.clock = new THREE.Clock();
+    this.scene = new THREE.Scene();
+    this.group = new THREE.Group();
+    this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 1000);
+    this.camera.position.z = 80;
+    this.camera.zoom = 0.9;
+    this.clock = new THREE.Clock();
     // this.gl = require('gl')(this.width, this.height, { preserveDrawingBuffer: true }); //headless-gl
     // this.renderer = new THREE.WebGLRenderer({ context: this.gl });
     // this.renderer.setSize(this.width, this.height);
