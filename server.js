@@ -91,7 +91,7 @@ class App {
           this.serverDateTime = new Date();
           image.print(this.font, 40, 330, "Server ISO Date : " + this.serverDateTime.toISOString());
           image.print(this.font, 40, 350, "Render Delta ms: " + (new Date().getTime() - this.renderStart.getTime()));
-          image.print(this.font, 40, 370, "Client Count: " + Object.keys(this.clients).length);
+          // image.print(this.font, 40, 370, "Client Count: " + Object.keys(this.clients).length);
           image.getBuffer("image/png", (err, buffer) => {
             this.io.emit('image', Buffer.from(buffer));
           });
