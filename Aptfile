@@ -1,1 +1,1 @@
-build-essential libxi-dev libglu1-mesa-dev libglew-dev pkg-config
+build-essential libxi-dev libglu1-mesa-dev libglew-dev pkg-config libgl1 freeglut3-dev xvfb
