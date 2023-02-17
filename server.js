@@ -4,6 +4,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 const path = require('path');
 const fs = require('fs');
+const gl = require('gl');
 const http = require('http');
 const THREE = require("three");
 const jimp = require("jimp");
@@ -48,7 +49,7 @@ class App {
     this.camera.position.z = 80;
     this.camera.zoom = 0.9;
     this.clock = new THREE.Clock();
-    // this.gl = require('gl')(this.width, this.height, { preserveDrawingBuffer: true }); //headless-gl
+    this.gl = gl(this.width, this.height, { preserveDrawingBuffer: true }); //headless-gl
     // this.renderer = new THREE.WebGLRenderer({ context: this.gl });
     // this.renderer.setSize(this.width, this.height);
     // this.renderer.outputEncoding = THREE.sRGBEncoding;
