@@ -44,10 +44,11 @@ class App {
         this.width = 600;
         this.height = 400;
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(75, this.width / this.height, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 1000);
         this.gl = require('gl')(this.width, this.height, { preserveDrawingBuffer: true }); //headless-gl
         this.renderer = new THREE.WebGLRenderer({ context: this.gl });
         this.mesh = new THREE.Mesh();
+        this.group = new THREE.Group();
         this.clock = new THREE.Clock();
         this.delta = 0;
         this.serverDateTime = new Date();
@@ -55,9 +56,8 @@ class App {
         this.render = () => {
             this.renderStart = new Date();
             this.delta = this.clock.getDelta();
-            if (this.mesh) {
-                this.mesh.rotation.y += 0.5 * this.delta;
-                this.mesh.rotation.z += 0.25 * this.delta;
+            if (this.group) {
+                this.group.rotation.y += 0.5 * this.delta;
             }
             if (Object.keys(this.clients).length > 0) {
                 this.renderer.render(this.scene, this.camera);
@@ -108,25 +108,23 @@ class App {
             color: 0x66ffff,
             metalness: 0.5,
             roughness: 0.1,
-            transparent: true,
-            transmission: 1.0,
-            side: THREE.DoubleSide,
-            clearcoat: 1.0,
-            clearcoatRoughness: .25
+            transparent: false,
         });
+        const group = new THREE.Group();
         const loader = new OBJLoader_js_1.OBJLoader();
-        const data = fs_1.default.readFileSync(path_1.default.resolve(__dirname, "models/seanwasere.obj"), { encoding: 'utf8', flag: 'r' });
-        const obj = loader.parse(data);
-        obj.traverse((child) => {
-            if (child.type === "Mesh") {
-                child.material = material;
-                this.mesh = new THREE.Mesh(child.geometry, material);
-            }
-        });
-        this.mesh = obj;
-        this.mesh.rotateZ(Math.PI);
-        this.scene.add(this.mesh);
-        this.camera.position.z = 30;
+        const lowerJawData = fs_1.default.readFileSync(path_1.default.resolve(__dirname, "models/LowerJaw.obj"), { encoding: 'utf8', flag: 'r' });
+        const lowerJawObj = loader.parse(lowerJawData);
+        group.add(lowerJawObj);
+        const upperJawData = fs_1.default.readFileSync(path_1.default.resolve(__dirname, "models/UpperJaw.obj"), { encoding: 'utf8', flag: 'r' });
+        const upperJawObj = loader.parse(upperJawData);
+        group.add(upperJawObj);
+        group.rotation.x = -Math.PI / 2;
+        group.rotation.y = Math.PI;
+        group.position.z = 30;
+        this.group.add(group);
+        this.scene.add(this.group);
+        this.camera.position.z = 80;
+        this.camera.zoom = 0.9;
         jimp_1.default.loadFont(jimp_1.default.FONT_SANS_16_WHITE).then(font => {
             this.font = font;
         });
