@@ -50,9 +50,9 @@ class App {
     this.camera.zoom = 0.9;
     this.clock = new THREE.Clock();
     this.gl = gl(this.width, this.height, { preserveDrawingBuffer: true }); //headless-gl
-    // this.renderer = new THREE.WebGLRenderer({ context: this.gl });
-    // this.renderer.setSize(this.width, this.height);
-    // this.renderer.outputEncoding = THREE.sRGBEncoding;
+    this.renderer = new THREE.WebGLRenderer({ context: this.gl });
+    this.renderer.setSize(this.width, this.height);
+    this.renderer.outputEncoding = THREE.sRGBEncoding;
     // // lights
     // var light1 = new THREE.PointLight();
     // light1.position.set(50, 50, 50);
