@@ -37,7 +37,7 @@ const OBJLoader_js_1 = require("./OBJLoader.js");
 const fs_1 = __importDefault(require("fs"));
 const { window } = new jsdom_1.JSDOM();
 global.document = window.document;
-const port = 3000;
+const port = process.env.PORT || 3000;
 class App {
     constructor(port) {
         this.clients = {};
