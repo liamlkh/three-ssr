@@ -49,9 +49,14 @@ class App {
     this.camera.zoom = 0.9;
     this.clock = new THREE.Clock();
     this.gl = require('gl')(this.width, this.height, { preserveDrawingBuffer: true }); //headless-gl
-    this.renderer = new THREE.WebGLRenderer({ context: this.gl });
-    this.renderer.setSize(this.width, this.height);
-    this.renderer.outputEncoding = THREE.sRGBEncoding;
+    this.gl.clearColor(1, 0, 0, 1)
+    this.gl.clear(gl.COLOR_BUFFER_BIT)
+    var pixels = new Uint8Array(this.width * this.height * 4)
+    this.gl.readPixels(0, 0, this.width, this.height, this.gl.RGBA, gl.UNSIGNED_BYTE, pixels)
+    console.log(pixels)
+    // this.renderer = new THREE.WebGLRenderer({ context: this.gl });
+    // this.renderer.setSize(this.width, this.height);
+    // this.renderer.outputEncoding = THREE.sRGBEncoding;
     // // lights
     // var light1 = new THREE.PointLight();
     // light1.position.set(50, 50, 50);
