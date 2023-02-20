@@ -40,8 +40,10 @@ class App {
       });
     });
     // three
-    this.width = 1920;
-    this.height = 1080;
+    // this.width = 600;
+    // this.height = 400;
+    this.width = 1600;
+    this.height = 900;
     this.scene = new THREE.Scene();
     this.group = new THREE.Group();
     this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 1000);
@@ -73,9 +75,9 @@ class App {
     group.position.z = 30;
     this.group.add(group);
     this.scene.add(this.group);
-    jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(font => {
-      this.font = font;
-    });
+    // jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(font => {
+    //   this.font = font;
+    // });
     this.render = () => {
       this.renderStart = new Date();
       this.delta = this.clock.getDelta();
@@ -88,9 +90,9 @@ class App {
         this.gl.readPixels(0, 0, this.width, this.height, this.gl.RGBA, this.gl.UNSIGNED_BYTE, bitmapData);
         new jimp(this.width, this.height, (err, image) => {
           image.bitmap.data = bitmapData;
-          this.serverDateTime = new Date();
-          image.print(this.font, 40, 330, "Server ISO Date : " + this.serverDateTime.toISOString());
-          image.print(this.font, 40, 350, "Render Delta ms: " + (new Date().getTime() - this.renderStart.getTime()));
+          // this.serverDateTime = new Date();
+          // image.print(this.font, 40, 330, "Server ISO Date : " + this.serverDateTime.toISOString());
+          // image.print(this.font, 40, 350, "Render Delta ms: " + (new Date().getTime() - this.renderStart.getTime()));
           // image.print(this.font, 40, 370, "Client Count: " + Object.keys(this.clients).length);
           image.getBuffer("image/png", (err, buffer) => {
             this.io.emit('image', Buffer.from(buffer));
