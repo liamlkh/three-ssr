@@ -64,9 +64,9 @@ class App {
     // mesh
     const group = new THREE.Group();
     const loader = new OBJLoader();
-    // const lowerJawData = fs.readFileSync(path.resolve(__dirname, "models/LowerJaw.obj"), { encoding: 'utf8', flag: 'r' });
-    // const lowerJawObj = loader.parse(lowerJawData);
-    // group.add(lowerJawObj);
+    const lowerJawData = fs.readFileSync(path.resolve(__dirname, "models/LowerJaw.obj"), { encoding: 'utf8', flag: 'r' });
+    const lowerJawObj = loader.parse(lowerJawData);
+    group.add(lowerJawObj);
     const upperJawData = fs.readFileSync(path.resolve(__dirname, "models/UpperJaw.obj"), { encoding: 'utf8', flag: 'r' });
     const upperJawObj = loader.parse(upperJawData);
     group.add(upperJawObj);
