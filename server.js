@@ -40,10 +40,10 @@ class App {
       });
     });
     // three
-    // this.width = 600;
-    // this.height = 400;
-    this.width = 1600;
-    this.height = 900;
+    this.width = 600;
+    this.height = 400;
+    // this.width = 1600;
+    // this.height = 900;
     this.scene = new THREE.Scene();
     this.group = new THREE.Group();
     this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 1000);
@@ -64,9 +64,9 @@ class App {
     // mesh
     const group = new THREE.Group();
     const loader = new OBJLoader();
-    const lowerJawData = fs.readFileSync(path.resolve(__dirname, "models/LowerJaw.obj"), { encoding: 'utf8', flag: 'r' });
-    const lowerJawObj = loader.parse(lowerJawData);
-    group.add(lowerJawObj);
+    // const lowerJawData = fs.readFileSync(path.resolve(__dirname, "models/LowerJaw.obj"), { encoding: 'utf8', flag: 'r' });
+    // const lowerJawObj = loader.parse(lowerJawData);
+    // group.add(lowerJawObj);
     const upperJawData = fs.readFileSync(path.resolve(__dirname, "models/UpperJaw.obj"), { encoding: 'utf8', flag: 'r' });
     const upperJawObj = loader.parse(upperJawData);
     group.add(upperJawObj);
